@@ -4,15 +4,26 @@ import javax.swing.Action;
 import javax.swing.JButton;
 
 public class Cell extends JButton{
-	boolean alive;
+	boolean isAlive;
+	int row, col;
 	
-	public Cell(Action a) {
+	public Cell(Action a, int row, int col) {
 		super(a);
-		alive=false;
+		this.row=row;
+		this.col=col;
+		isAlive=false;
+	}
+	
+	public boolean isAlive(){
+		return isAlive;
 	}
 	
 	public void toggle(){
-		alive=!alive;
+		isAlive=!isAlive;
+	}
+	
+	public String toString(){
+		return "Cell ("+row+","+col+"). Alive: "+isAlive;
 	}
 
 }

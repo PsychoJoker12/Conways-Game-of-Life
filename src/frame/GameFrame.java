@@ -11,23 +11,24 @@ import actions.*;
 import elements.Cell;
 
 public class GameFrame implements Runnable {
-	JFrame frame;
-	JMenuBar menuBar;
+	static JFrame frame;
+	static JMenuBar menuBar;
 	final static int CELL_WIDTH=100;
 	final static int CELL_HEIGHT=100;
-	static Cell[][] cells=new Cell[CELL_WIDTH][CELL_HEIGHT];
+	Cell[][] cells=new Cell[CELL_WIDTH][CELL_HEIGHT];
 	
 	public void run(){
 		frame=new JFrame("Conway's Game of Life");
 		frame.setLayout(new GridLayout(CELL_WIDTH,CELL_HEIGHT));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1080, 720);
+		frame.setResizable(false);
 		frame.setVisible(true);
 		
 		//Creates MenuBar
 		menuBar=new JMenuBar();
 			//"File" menu
-			JMenu fileMenu=new JMenu("Simulation");
+			JMenu fileMenu=new JMenu("Run");
 				JMenuItem runButton=new JMenuItem(new SimulationAction());
 				fileMenu.add(runButton);
 		
@@ -41,15 +42,19 @@ public class GameFrame implements Runnable {
 		frame.setJMenuBar(menuBar);
 	}
 	
+	public Cell getCell(int row, int col){
+		return cells[row][col];
+	}
+	
 	public void instantiateButtons(){
 		for(int i=0; i<cells.length; i++){
 			for(int j=0; j<cells[i].length; j++){
-				cells[i][j]=new Cell(new CellClickedAction(i,j));
+				cells[i][j]=new Cell(new CellClickedAction(i,j),i,j);
 			}
 		}
 	}
 	
-	public static void toggleButton(int row, int col){
+	public void toggleButton(int row, int col){
 		cells[row][col].toggle();
 	}
 }

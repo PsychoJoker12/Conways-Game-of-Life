@@ -6,7 +6,7 @@ import javax.swing.AbstractAction;
 
 public class SimulationAction extends AbstractAction{
 	public SimulationAction(){
-		super("Run");
+		super("Run Simulation");
 	}
 
 	@Override
