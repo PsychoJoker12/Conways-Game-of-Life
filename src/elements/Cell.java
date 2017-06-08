@@ -1,12 +1,13 @@
 package elements;
 
+import javax.swing.Action;
 import javax.swing.JButton;
 
 public class Cell extends JButton{
 	boolean alive;
 	
-	public Cell(int row, int col) {
-		super("Cell ("+row+","+col+")");
+	public Cell(Action a) {
+		super(a);
 		alive=false;
 	}
 	

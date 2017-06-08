@@ -16,6 +16,7 @@ public class CellClickedAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		frame.GameFrame.toggleButton(row, col);
+		System.out.println("Cell ("+row+","+col+")");
 	}
 
 }

@@ -12,6 +12,6 @@ public class SimulationAction extends AbstractAction{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		//TODO make an action
-		System.out.println();
+		System.out.println("RUN");
 	}
 }
