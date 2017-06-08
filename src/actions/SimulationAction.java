@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-public class RunSimulation extends AbstractAction{
-	public RunSimulation(){
+public class SimulationAction extends AbstractAction{
+	public SimulationAction(){
 		super("Run");
 	}
 
