@@ -22,7 +22,7 @@ public class GameFrame implements Runnable {
 		frame.setLayout(new GridLayout(CELL_WIDTH,CELL_HEIGHT));
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(1080, 720);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		frame.setVisible(true);
 		
 		//Creates MenuBar
@@ -49,7 +49,7 @@ public class GameFrame implements Runnable {
 	public void instantiateButtons(){
 		for(int i=0; i<cells.length; i++){
 			for(int j=0; j<cells[i].length; j++){
-				cells[i][j]=new Cell(new CellClickedAction(i,j),i,j);
+				cells[i][j]=new Cell(new CellClickedAction(this,i,j),i,j);
 			}
 		}
 	}

@@ -14,5 +14,4 @@ public class Main {
 	public static GameFrame getFrame(){
 		return frame;
 	}
-
 }
