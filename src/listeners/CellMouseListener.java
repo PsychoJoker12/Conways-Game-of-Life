@@ -1,17 +1,18 @@
 package listeners;
 
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import elements.Cell;
-import frame.GameFrame;
+import elements.CellGrid;
 
-public class MouseListener implements java.awt.event.MouseListener {
-	GameFrame frame;
+public class CellMouseListener implements MouseListener {
+	CellGrid grid;
 	Cell cell;
 	
-	public MouseListener(GameFrame frame, int row, int col) {
-		this.frame=frame;
-		cell=frame.getCell(row, col);
+	public CellMouseListener(CellGrid grid, int row, int col) {
+		this.grid=grid;
+		cell=grid.getCell(row, col);
 	}
 
 	@Override

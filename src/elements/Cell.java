@@ -1,10 +1,10 @@
 package elements;
 
-import javax.swing.Action;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+@SuppressWarnings("serial")
 public class Cell extends JLabel {
 	private boolean isLiving;
 	private int row, col;
@@ -19,6 +19,14 @@ public class Cell extends JLabel {
 		dead=new ImageIcon("resources/cell/Cell_Dead.png");
 		
 		updateUI();
+	}
+	
+	public int getRow(){
+		return row;
+	}
+	
+	public int getCol(){
+		return col;
 	}
 	
 	public void toggle(){

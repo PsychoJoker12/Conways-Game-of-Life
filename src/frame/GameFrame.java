@@ -9,17 +9,19 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import elements.Cell;
-import listeners.MouseListener;
+import elements.CellGrid;
 
+@SuppressWarnings("serial")
 public class GameFrame extends JFrame {
 	final int GRID_WIDTH;
 	final int GRID_HEIGHT;
-	Cell[][] cells;
+	CellGrid grid;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				GameFrame frame=new GameFrame();
+				frame.setVisible(true);
 			}
 		});
 	}
@@ -47,23 +49,12 @@ public class GameFrame extends JFrame {
 			menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
 		
-		//Create Cells
-		cells=new Cell[GRID_WIDTH][GRID_HEIGHT];
-		for(int i=0; i<cells.length; i++){
-			for(int j=0; j<cells[i].length; j++){
-				cells[i][j]=new Cell(i, j);
-				Cell cell=cells[i][j];
-				add(cell);
-				cell.addMouseListener(new MouseListener(this, i, j));
-			}
-		}
+		//Create Grid
+		grid=new CellGrid(this, GRID_WIDTH, GRID_HEIGHT);
+		
 		
 		//Display the window
 		pack();
 		setVisible(true);
-	}
-	
-	public Cell getCell(int row, int col){
-		return cells[row][col];
 	}
 }
