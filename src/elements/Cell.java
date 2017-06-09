@@ -21,6 +21,10 @@ public class Cell extends JLabel {
 		updateUI();
 	}
 	
+	public boolean isLiving(){
+		return isLiving;
+	}
+	
 	public int getRow(){
 		return row;
 	}
@@ -29,8 +33,20 @@ public class Cell extends JLabel {
 		return col;
 	}
 	
+	public void setLiving(){
+		isLiving=true;
+	}
+	
+	public void setDead(){
+		isLiving=false;
+	}
+	
 	public void toggle(){
 		isLiving=!isLiving;
+	}
+	
+	public void toggleAndUpdate(){
+		toggle();
 		updateUI();
 	}
 	

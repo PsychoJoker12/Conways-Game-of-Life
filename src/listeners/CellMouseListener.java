@@ -26,7 +26,7 @@ public class CellMouseListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		cell.toggle();
+		cell.toggleAndUpdate();
 	}
 
 	@Override

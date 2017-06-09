@@ -8,7 +8,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
-import elements.Cell;
+import actions.StepAction;
 import elements.CellGrid;
 
 @SuppressWarnings("serial")
@@ -27,8 +27,8 @@ public class GameFrame extends JFrame {
 	}
 	
 	public GameFrame() {
-		GRID_WIDTH=100;
-		GRID_HEIGHT=100;
+		GRID_WIDTH=10;
+		GRID_HEIGHT=7;
 		
 		createAndShowGUI();
 	}
@@ -37,14 +37,14 @@ public class GameFrame extends JFrame {
 		/* Create and set up the window */
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("Conway's Game of Life");
-		setLayout(new GridLayout(GRID_WIDTH, GRID_HEIGHT));
-		setResizable(true);
+		setLayout(new GridLayout(GRID_HEIGHT, GRID_WIDTH));
+		setResizable(false);
 		
 		//Create MenuBar
 		JMenuBar menuBar=new JMenuBar();
 			//"File" menu
 			JMenu fileMenu=new JMenu("Run");
-				JMenuItem runButton=new JMenuItem();
+				JMenuItem runButton=new JMenuItem(new StepAction("Step", this));
 				fileMenu.add(runButton);
 			menuBar.add(fileMenu);
 		setJMenuBar(menuBar);
@@ -56,5 +56,9 @@ public class GameFrame extends JFrame {
 		//Display the window
 		pack();
 		setVisible(true);
+	}
+	
+	public CellGrid getGrid(){
+		return grid;
 	}
 }
