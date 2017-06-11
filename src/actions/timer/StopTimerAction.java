@@ -22,6 +22,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.Timer;
 
+@SuppressWarnings("serial")
 public class StopTimerAction extends AbstractAction{
 	Timer timer;
 	

@@ -15,24 +15,34 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package actions.timer;
+package actions;
 
+import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Timer;
+
+import frame.HelpFrame;
 
 @SuppressWarnings("serial")
-public class StartTimerAction extends AbstractAction{
-	Timer timer;
+public class HelpButtonAction extends AbstractAction {
 	
-	public StartTimerAction(String name, Timer timer){
+	public HelpButtonAction(String name) {
 		super(name);
-		this.timer=timer;
-	}
-	@Override
-	public void actionPerformed(ActionEvent e){
-		timer.start();
 	}
 
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Runnable runner=new Runnable(){
+			public void run(){
+				if(!HelpFrame.instanceRunning()){
+					HelpFrame frame=new HelpFrame();
+					frame.setVisible(true);
+				}
+			}
+		};
+		
+		EventQueue.invokeLater(runner);
+
+	}
 }

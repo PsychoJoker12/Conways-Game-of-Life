@@ -20,7 +20,6 @@ package listeners;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-import elements.Cell;
 import elements.CellGrid;
 
 public class CellMouseListener implements MouseListener {

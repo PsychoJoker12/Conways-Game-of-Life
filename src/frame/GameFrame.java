@@ -26,6 +26,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
+import actions.HelpButtonAction;
 import actions.StepAction;
 import actions.timer.StartTimerAction;
 import actions.timer.StopTimerAction;
@@ -83,7 +84,7 @@ public class GameFrame extends JFrame {
 			
 			//"Help" Menu
 			JMenu helpMenu=new JMenu("Help");
-				JMenuItem aboutButton=new JMenuItem("About");
+				JMenuItem aboutButton=new JMenuItem(new HelpButtonAction("About"));
 				helpMenu.add(aboutButton);
 			menuBar.add(helpMenu);
 		setJMenuBar(menuBar);
