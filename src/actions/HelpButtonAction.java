@@ -22,7 +22,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import frame.HelpFrame;
+import frames.HelpFrame;
 
 @SuppressWarnings("serial")
 public class HelpButtonAction extends AbstractAction {

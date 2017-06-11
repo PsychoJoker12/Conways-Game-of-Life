@@ -17,7 +17,7 @@
  */
 package elements;
 
-import frame.GameFrame;
+import frames.GameFrame;
 import listeners.CellMouseListener;
 
 public class CellGrid {

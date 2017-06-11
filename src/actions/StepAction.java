@@ -21,7 +21,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import frame.GameFrame;
+import frames.GameFrame;
 
 @SuppressWarnings("serial")
 public class StepAction extends AbstractAction {
