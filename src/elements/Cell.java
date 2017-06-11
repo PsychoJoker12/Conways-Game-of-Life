@@ -7,6 +7,7 @@ import javax.swing.JLabel;
 @SuppressWarnings("serial")
 public class Cell extends JLabel {
 	private boolean isLiving;
+	private boolean oldState;
 	private int row, col;
 	private Icon alive, dead;
 	
@@ -14,6 +15,7 @@ public class Cell extends JLabel {
 		this.row=row;
 		this.col=col;
 		isLiving=false;
+		oldState=true;
 
 		alive=new ImageIcon("resources/cell/Cell_Alive.png");
 		dead=new ImageIcon("resources/cell/Cell_Dead.png");
@@ -23,6 +25,10 @@ public class Cell extends JLabel {
 	
 	public boolean isLiving(){
 		return isLiving;
+	}
+	
+	public boolean oldState(){
+		return oldState;
 	}
 	
 	public int getRow(){
@@ -52,13 +58,24 @@ public class Cell extends JLabel {
 	
 	@Override
 	public void updateUI(){
-		if(isLiving){
-			setIcon(alive);
-			super.updateUI();
+		if(oldState!=isLiving){
+			if(isLiving){
+				setIcon(alive);
+				super.updateUI();
+			}
+			else{
+				setIcon(dead);
+				super.updateUI();
+			}
 		}
-		else{
-			setIcon(dead);
-			super.updateUI();
-		}
+		oldState=isLiving;
+	}
+	
+	@Override
+	public String toString(){
+		String out;
+		if(isLiving()) out="T";
+		else out="F";
+		return "Cell ("+row+","+col+") "+out;
 	}
 }

@@ -1,15 +1,13 @@
 package elements;
 
-import java.util.Arrays;
-
 import frame.GameFrame;
 import listeners.CellMouseListener;
 
 public class CellGrid {
-	Cell[][] grid, temp;
+	Cell[][] grid;
 	
 	public CellGrid(GameFrame frame, int width, int height) {
-		grid=new Cell[width][height];
+		grid=new Cell[height][width];
 		for(int i=0; i<grid.length; i++){
 			for(int j=0; j<grid[i].length; j++){
 				grid[i][j]=new Cell(i, j);
@@ -24,20 +22,27 @@ public class CellGrid {
 		return grid[row][col];
 	}
 	
+	public void toggleAndUpdate(int row, int col){
+		grid[row][col].toggleAndUpdate();
+	}
+	
 	public void updateGrid() {
-		temp=Arrays.copyOf(grid, grid.length);
+		updateUI();
 		
-		for(int i=0; i<temp.length; i++){
-			for(int j=0; j<temp[i].length; j++){
-				
+		for(int i=0; i<grid.length; i++){
+			for(int j=0; j<grid[i].length; j++){
 				Cell cell=grid[i][j];
 				int numLiving=checkLiving(i,j);
 				
-				if(!cell.isLiving()){
-					if(numLiving==3) cell.setLiving();
+				if(cell.isLiving()){
+					if(numLiving>3 || numLiving<2){
+						cell.toggle();
+					}
 				}
 				else{
-					if(numLiving<2 || numLiving>3) cell.setDead();
+					if(numLiving==3){
+						cell.toggle();
+					}
 				}
 			}
 		}
@@ -55,17 +60,14 @@ public class CellGrid {
 	private int checkLiving(int row, int col){
 		int numLiving=0;
 		
-		for(int i=row-1; i<=row+1; i++){
-			while(i<0) i++;
-			if(i>=temp.length) break;
-			
-			for(int j=col; j<=col+1; j++){
-				while(j<0) j++;
-				if(j>=temp[i].length) break;
-				
-				Cell cell=temp[i][j];
-				if(i!=row && j!=col && cell.isLiving()){
-					numLiving++;
+		for (int i = Math.max(0, row - 1); i <= Math.min(row + 1, grid.length-1); i++) {
+			for (int j = Math.max(0, col - 1); j <= Math.min(col + 1, grid[i].length-1); j++) {
+				if (i >= 0 && j >= 0 && i < grid.length && j < grid[i].length) {
+					if(i!=row || j!=col){
+						if(grid[i][j].oldState()){
+							numLiving++;
+						}
+					}
 				}
 			}
 		}

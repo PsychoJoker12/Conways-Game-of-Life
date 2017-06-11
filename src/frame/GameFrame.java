@@ -27,8 +27,8 @@ public class GameFrame extends JFrame {
 	}
 	
 	public GameFrame() {
-		GRID_WIDTH=10;
-		GRID_HEIGHT=7;
+		GRID_WIDTH=72;
+		GRID_HEIGHT=30;
 		
 		createAndShowGUI();
 	}
@@ -47,6 +47,12 @@ public class GameFrame extends JFrame {
 				JMenuItem runButton=new JMenuItem(new StepAction("Step", this));
 				fileMenu.add(runButton);
 			menuBar.add(fileMenu);
+			
+			//"Help" Menu
+			JMenu helpMenu=new JMenu("Help");
+				JMenuItem aboutButton=new JMenuItem("About");
+				helpMenu.add(aboutButton);
+			menuBar.add(helpMenu);
 		setJMenuBar(menuBar);
 		
 		//Create Grid

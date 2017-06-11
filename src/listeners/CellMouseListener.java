@@ -8,11 +8,12 @@ import elements.CellGrid;
 
 public class CellMouseListener implements MouseListener {
 	CellGrid grid;
-	Cell cell;
+	int row, col;
 	
 	public CellMouseListener(CellGrid grid, int row, int col) {
 		this.grid=grid;
-		cell=grid.getCell(row, col);
+		this.row=row;
+		this.col=col;
 	}
 
 	@Override
@@ -26,7 +27,7 @@ public class CellMouseListener implements MouseListener {
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		cell.toggleAndUpdate();
+		grid.toggleAndUpdate(row,col);
 	}
 
 	@Override
