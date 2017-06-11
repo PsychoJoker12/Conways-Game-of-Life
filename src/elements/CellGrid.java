@@ -90,4 +90,13 @@ public class CellGrid {
 		}
 		return numLiving;
 	}
+	
+	public void clear(){
+		for(int i=0; i<grid.length; i++){
+			for(int j=0; j<grid[i].length; j++){
+				grid[i][j].setDead();
+				grid[i][j].updateUI();
+			}
+		}
+	}
 }

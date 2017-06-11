@@ -24,30 +24,30 @@ import javax.swing.JFrame;
 import javax.swing.JTextArea;
 
 @SuppressWarnings("serial")
-public class HelpFrame extends JFrame{
+public class AboutFrame extends JFrame{
 	private static boolean instanceRunning=false;
 	private static String information=
-			"Copyright (C) 2017 Robert Ciliberto\n"+
+			"  Copyright (C) 2017 Robert Ciliberto\n"+
 			"\n"+
-			"About this program:\n"+
-			"   The Game of Life, also known simply as Life, is a cellular automaton\n"+
-			"   devised by the British mathematician John Horton Conway in 1970. The\n"+
-			"   \"game\" is a zero-player game, meaning that its evolution is determined\n"+
-			"   by its initial state, requiring no further input. One interacts with the \n"+
-			"   Game of Life by creating an initial configuration and observing how it\n"+
-			"   evolves.\n"+
+			"  About this program:\n"+
+			"     The Game of Life, also known simply as Life, is a cellular automaton\n"+
+			"     devised by the British mathematician John Horton Conway in 1970. The\n"+
+			"     \"game\" is a zero-player game, meaning that its evolution is determined\n"+
+			"     by its initial state, requiring no further input. One interacts with the\n"+
+			"     Game of Life by creating an initial configuration and observing how it\n"+
+			"     evolves.\n"+
 			"\n"+
-			"How to Play:\n"+
-			"   1. Any live cell with fewer than two live neighbours dies, as if caused\n"+
-			"      by underpopulation.\n"+
-			"   2. Any live cell with two or three live neighbours lives on to the next\n"+
-			"      generation./n"+
-			"   3. Any live cell with more than three live neighbours dies, as if by\n"+
-			"      overpopulation.\n"+
-			"   4. Any dead cell with exactly three live neighbours becomes a live cell,\n"+
-			"      as if by reproduction.";
+			"  How to Play:\n"+
+			"     1. Any live cell with fewer than two live neighbours dies, as if caused\n"+
+			"        by underpopulation.\n"+
+			"     2. Any live cell with two or three live neighbours lives on to the next\n"+
+			"        generation.\n"+
+			"     3. Any live cell with more than three live neighbours dies, as if by\n"+
+			"        overpopulation.\n"+
+			"     4. Any dead cell with exactly three live neighbours becomes a live cell,\n"+
+			"        as if by reproduction.";
 	
-	public HelpFrame(){
+	public AboutFrame(){
 		instanceRunning=true;
 		/* Create and set up the window */
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

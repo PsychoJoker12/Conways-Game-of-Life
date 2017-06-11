@@ -22,12 +22,12 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
-import frames.HelpFrame;
+import frames.AboutFrame;
 
 @SuppressWarnings("serial")
-public class HelpButtonAction extends AbstractAction {
+public class AboutButtonAction extends AbstractAction {
 	
-	public HelpButtonAction(String name) {
+	public AboutButtonAction(String name) {
 		super(name);
 	}
 
@@ -35,8 +35,8 @@ public class HelpButtonAction extends AbstractAction {
 	public void actionPerformed(ActionEvent e) {
 		Runnable runner=new Runnable(){
 			public void run(){
-				if(!HelpFrame.instanceRunning()){
-					HelpFrame frame=new HelpFrame();
+				if(!AboutFrame.instanceRunning()){
+					AboutFrame frame=new AboutFrame();
 					frame.setVisible(true);
 				}
 			}

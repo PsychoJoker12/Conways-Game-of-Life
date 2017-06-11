@@ -26,7 +26,8 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
-import actions.HelpButtonAction;
+import actions.ClearScreenAction;
+import actions.AboutButtonAction;
 import actions.StepAction;
 import actions.timer.StartTimerAction;
 import actions.timer.StopTimerAction;
@@ -69,7 +70,7 @@ public class GameFrame extends JFrame {
 		
 		//Create MenuBar
 		JMenuBar menuBar=new JMenuBar();
-			//"Run" menu
+			//"Simulation" menu
 			JMenu simulationMenu=new JMenu("Simulation");
 				JMenuItem stepButton=new JMenuItem(new StepAction("Step", this));
 				simulationMenu.add(stepButton);
@@ -81,10 +82,14 @@ public class GameFrame extends JFrame {
 				JMenuItem stopButton=new JMenuItem(new StopTimerAction("Stop", timer));
 				simulationMenu.add(stopButton);
 			menuBar.add(simulationMenu);
-			
+			//"Screen" menu
+			JMenu screenMenu=new JMenu("Screen");
+				JMenuItem clearScreenButton=new JMenuItem(new ClearScreenAction("Clear Screen", this));
+				screenMenu.add(clearScreenButton);
+			menuBar.add(screenMenu);
 			//"Help" Menu
 			JMenu helpMenu=new JMenu("Help");
-				JMenuItem aboutButton=new JMenuItem(new HelpButtonAction("About"));
+				JMenuItem aboutButton=new JMenuItem(new AboutButtonAction("About"));
 				helpMenu.add(aboutButton);
 			menuBar.add(helpMenu);
 		setJMenuBar(menuBar);
