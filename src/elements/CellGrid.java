@@ -39,10 +39,6 @@ public class CellGrid {
 		return grid[row][col];
 	}
 	
-	public void toggleAndUpdate(int row, int col){
-		grid[row][col].toggleAndUpdate();
-	}
-	
 	public void updateGrid() {
 		updateUI();
 		

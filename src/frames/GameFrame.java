@@ -37,7 +37,7 @@ import elements.CellGrid;
 public class GameFrame extends JFrame {
 	final int GRID_WIDTH;
 	final int GRID_HEIGHT;
-	Timer timer;
+	private Timer timer;
 	CellGrid grid;
 	
 	public static void main(String[] args) {
@@ -105,5 +105,9 @@ public class GameFrame extends JFrame {
 	
 	public CellGrid getGrid(){
 		return grid;
+	}
+	
+	public Timer getTimer(){
+		return timer;
 	}
 }

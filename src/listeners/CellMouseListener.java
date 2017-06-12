@@ -23,6 +23,8 @@ import java.awt.event.MouseListener;
 import elements.CellGrid;
 
 public class CellMouseListener implements MouseListener {
+	static boolean mouseHeld=false;
+	static boolean mouseHeldOnLiving;
 	CellGrid grid;
 	int row, col;
 	
@@ -36,17 +38,31 @@ public class CellMouseListener implements MouseListener {
 	public void mouseClicked(MouseEvent e) {}
 
 	@Override
-	public void mouseEntered(MouseEvent e) {}
+	public void mouseEntered(MouseEvent e) {
+		if(mouseHeld){
+			if(mouseHeldOnLiving){
+				//grid.getCell(row, col).setDead();
+			}
+			else{
+				grid.getCell(row, col).setLiving();
+			}
+			grid.getCell(row, col).updateUI();
+		}
+	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
-		grid.toggleAndUpdate(row,col);
+		mouseHeld=true;
+		mouseHeldOnLiving=grid.getCell(row, col).isLiving();
+		grid.getCell(row, col).toggleAndUpdate();
 	}
 
 	@Override
-	public void mouseReleased(MouseEvent arg0) {}
+	public void mouseReleased(MouseEvent arg0) {
+		mouseHeld=false;
+	}
 
 }
