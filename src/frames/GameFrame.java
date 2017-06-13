@@ -58,7 +58,7 @@ public class GameFrame extends JFrame {
 	}
 	
 	private void createTimer(){
-		timer=new Timer(100, new StepAction("Run", this));
+		timer=new Timer(75, new StepAction("Run", this));
 	}
 	
 	private void createAndShowGUI() {

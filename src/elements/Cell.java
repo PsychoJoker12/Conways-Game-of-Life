@@ -84,8 +84,9 @@ public class Cell extends JLabel {
 				setIcon(dead);
 				super.updateUI();
 			}
+			oldState=isLiving;
 		}
-		oldState=isLiving;
+		
 	}
 	
 	@Override

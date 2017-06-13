@@ -40,15 +40,13 @@ public class CellGrid {
 	}
 	
 	public void updateGrid() {
-		updateUI();
-		
 		for(int i=0; i<grid.length; i++){
 			for(int j=0; j<grid[i].length; j++){
 				Cell cell=grid[i][j];
 				int numLiving=checkLiving(i,j);
 				
 				if(cell.isLiving()){
-					if(numLiving>3 || numLiving<2){
+					if(numLiving<2 || numLiving>3){
 						cell.toggle();
 					}
 				}
@@ -79,6 +77,7 @@ public class CellGrid {
 					if(i!=row || j!=col){
 						if(grid[i][j].oldState()){
 							numLiving++;
+							if(numLiving>3) return 4;
 						}
 					}
 				}
