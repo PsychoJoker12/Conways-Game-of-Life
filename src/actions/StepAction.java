@@ -34,7 +34,7 @@ public class StepAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		frame.getGrid().updateGrid();
+		frame.getGrid().updateGrid(frame.getTimer());
 	}
 
 }

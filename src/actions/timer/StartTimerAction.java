@@ -20,19 +20,21 @@ package actions.timer;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.Timer;
+
+import frames.GameFrame;
 
 @SuppressWarnings("serial")
 public class StartTimerAction extends AbstractAction{
-	Timer timer;
+	GameFrame frame;
 	
-	public StartTimerAction(String name, Timer timer){
+	public StartTimerAction(String name, GameFrame frame){
 		super(name);
-		this.timer=timer;
+		this.frame=frame;
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		timer.start();
+		frame.getGrid().saveGrid();
+		frame.getTimer().start();
 	}
 
 }

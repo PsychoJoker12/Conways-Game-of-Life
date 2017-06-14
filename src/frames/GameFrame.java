@@ -27,6 +27,7 @@ import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
 import actions.ClearScreenAction;
+import actions.LoadSavedGridAction;
 import actions.AboutButtonAction;
 import actions.StepAction;
 import actions.timer.StartTimerAction;
@@ -77,15 +78,20 @@ public class GameFrame extends JFrame {
 				
 				simulationMenu.addSeparator();
 				
-				JMenuItem runButton=new JMenuItem(new StartTimerAction("Run", timer));
+				JMenuItem runButton=new JMenuItem(new StartTimerAction("Run", this));
 				simulationMenu.add(runButton);
-				JMenuItem stopButton=new JMenuItem(new StopTimerAction("Stop", timer));
+				JMenuItem stopButton=new JMenuItem(new StopTimerAction("Stop", this));
 				simulationMenu.add(stopButton);
 			menuBar.add(simulationMenu);
 			//"Screen" menu
 			JMenu screenMenu=new JMenu("Screen");
 				JMenuItem clearScreenButton=new JMenuItem(new ClearScreenAction("Clear Screen", this));
 				screenMenu.add(clearScreenButton);
+				
+				screenMenu.addSeparator();
+				
+				JMenuItem resetButton=new JMenuItem(new LoadSavedGridAction("Reset", this));
+				screenMenu.add(resetButton);
 			menuBar.add(screenMenu);
 			//"Help" Menu
 			JMenu helpMenu=new JMenu("Help");

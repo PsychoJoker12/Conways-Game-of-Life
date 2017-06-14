@@ -17,14 +17,20 @@
  */
 package elements;
 
+import java.util.Arrays;
+
+import javax.swing.Timer;
+
 import frames.GameFrame;
 import listeners.CellMouseListener;
 
 public class CellGrid {
 	Cell[][] grid;
+	boolean[][] savedGrid;
 	
 	public CellGrid(GameFrame frame, int width, int height) {
 		grid=new Cell[height][width];
+		savedGrid=new boolean[height][width];
 		for(int i=0; i<grid.length; i++){
 			for(int j=0; j<grid[i].length; j++){
 				grid[i][j]=new Cell(i, j);
@@ -39,11 +45,13 @@ public class CellGrid {
 		return grid[row][col];
 	}
 	
-	public void updateGrid() {
+	public void updateGrid(Timer timer) {
+		int totalNumber=0;
 		for(int i=0; i<grid.length; i++){
 			for(int j=0; j<grid[i].length; j++){
 				Cell cell=grid[i][j];
 				int numLiving=checkLiving(i,j);
+				totalNumber+=numLiving;
 				
 				if(cell.isLiving()){
 					if(numLiving<2 || numLiving>3){
@@ -58,6 +66,7 @@ public class CellGrid {
 			}
 		}
 		updateUI();
+		if(totalNumber==0) timer.stop();
 	}
 	
 	private void updateUI(){
@@ -84,6 +93,24 @@ public class CellGrid {
 			}
 		}
 		return numLiving;
+	}
+	
+	public void saveGrid(){
+		for(int i=0; i<grid.length; i++){
+			for(int j=0; j<grid[i].length; j++){
+				Cell cell=grid[i][j];
+				savedGrid[i][j]=cell.isLiving();
+			}
+		}
+	}
+	
+	public void loadSavedGrid(){
+		for(int i=0; i<savedGrid.length; i++){
+			for(int j=0; j<savedGrid[i].length; j++){
+				grid[i][j].setLivingState(savedGrid[i][j]);
+			}
+		}
+		updateUI();
 	}
 	
 	public void clear(){

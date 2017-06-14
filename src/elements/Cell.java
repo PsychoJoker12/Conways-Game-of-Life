@@ -56,12 +56,16 @@ public class Cell extends JLabel {
 		return col;
 	}
 	
+	public void setLivingState(boolean living){
+		isLiving=living;
+	}
+	
 	public void setLiving(){
-		isLiving=true;
+		setLivingState(true);
 	}
 	
 	public void setDead(){
-		isLiving=false;
+		setLivingState(false);
 	}
 	
 	public void toggle(){
