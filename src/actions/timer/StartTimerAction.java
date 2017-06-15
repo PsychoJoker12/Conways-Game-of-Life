@@ -33,8 +33,9 @@ public class StartTimerAction extends AbstractAction{
 	}
 	@Override
 	public void actionPerformed(ActionEvent e){
-		frame.getGrid().saveGrid();
-		frame.getTimer().start();
+		if(!frame.getTimer().isRunning()){
+			frame.getGrid().saveGrid();
+			frame.getTimer().start();
+		}
 	}
-
 }

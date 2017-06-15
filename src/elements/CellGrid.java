@@ -17,8 +17,6 @@
  */
 package elements;
 
-import java.util.Arrays;
-
 import javax.swing.Timer;
 
 import frames.GameFrame;

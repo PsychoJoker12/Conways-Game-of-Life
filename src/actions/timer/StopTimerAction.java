@@ -34,7 +34,7 @@ public class StopTimerAction extends AbstractAction{
 	
 	@Override
 	public void actionPerformed(ActionEvent e){
-		frame.getTimer().stop();
+		if(frame.getTimer().isRunning()) frame.getTimer().stop();
 	}
 
 }
