@@ -34,6 +34,7 @@ public class OpenGridFileAction extends AbstractAction {
 	
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
+		frame.getTimer().stop();
 		frame.getGrid().openGridFile();
 	}
 
