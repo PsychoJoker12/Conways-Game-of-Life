@@ -41,7 +41,7 @@ public class CellMouseListener implements MouseListener {
 	public void mouseEntered(MouseEvent e) {
 		if(mouseHeld){
 			if(mouseHeldOnLiving){
-				//grid.getCell(row, col).setDead();
+				grid.getCell(row, col).setDead();
 			}
 			else{
 				grid.getCell(row, col).setLiving();
