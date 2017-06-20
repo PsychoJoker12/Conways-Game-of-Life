@@ -26,9 +26,11 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.Timer;
 
-import actions.ClearScreenAction;
-import actions.LoadSavedGridAction;
 import actions.AboutButtonAction;
+import actions.ClearScreenAction;
+import actions.LoadTemporaryGridAction;
+import actions.OpenGridFileAction;
+import actions.SaveGridFileAction;
 import actions.StepAction;
 import actions.timer.StartTimerAction;
 import actions.timer.StopTimerAction;
@@ -71,6 +73,13 @@ public class GameFrame extends JFrame {
 		
 		//Create MenuBar
 		JMenuBar menuBar=new JMenuBar();
+			//"File" menu
+			JMenu fileMenu=new JMenu("File");
+				JMenuItem saveButton=new JMenuItem(new SaveGridFileAction("Save File", this));
+				fileMenu.add(saveButton);
+				JMenuItem openButton=new JMenuItem(new OpenGridFileAction("Open File", this));
+				fileMenu.add(openButton);
+			menuBar.add(fileMenu);
 			//"Simulation" menu
 			JMenu simulationMenu=new JMenu("Simulation");
 				JMenuItem stepButton=new JMenuItem(new StepAction("Step", this));
@@ -90,7 +99,7 @@ public class GameFrame extends JFrame {
 				
 				screenMenu.addSeparator();
 				
-				JMenuItem resetButton=new JMenuItem(new LoadSavedGridAction("Reset", this));
+				JMenuItem resetButton=new JMenuItem(new LoadTemporaryGridAction("Reset", this));
 				screenMenu.add(resetButton);
 			menuBar.add(screenMenu);
 			//"Help" Menu

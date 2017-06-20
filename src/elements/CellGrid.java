@@ -17,16 +17,29 @@
  */
 package elements;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.List;
+
+import javax.swing.JFileChooser;
 import javax.swing.Timer;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import frames.GameFrame;
 import listeners.CellMouseListener;
 
 public class CellGrid {
+	File savedGridFile;
 	Cell[][] grid;
 	boolean[][] savedGrid;
 	
 	public CellGrid(GameFrame frame, int width, int height) {
+		savedGridFile=null;
 		grid=new Cell[height][width];
 		savedGrid=new boolean[height][width];
 		for(int i=0; i<grid.length; i++){
@@ -102,13 +115,86 @@ public class CellGrid {
 		}
 	}
 	
-	public void loadSavedGrid(){
+	public void loadTemporaryGrid(){
 		for(int i=0; i<savedGrid.length; i++){
 			for(int j=0; j<savedGrid[i].length; j++){
 				grid[i][j].setLivingState(savedGrid[i][j]);
 			}
 		}
 		updateUI();
+	}
+	
+	public void openGridFile(){
+		JFileChooser fileChooser=new JFileChooser("./examples/");
+		fileChooser.setDialogTitle("Open Saved Grid");
+		FileNameExtensionFilter filter=new FileNameExtensionFilter(
+				"Saved Grid", "grid");
+		fileChooser.setFileFilter(filter);
+		int returnState=fileChooser.showOpenDialog(null);
+		if(returnState==JFileChooser.APPROVE_OPTION){
+			savedGridFile=fileChooser.getSelectedFile();
+			try {
+				loadGridFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void loadGridFile() throws IOException{
+		List<String> lines=Files.readAllLines(Paths.get(savedGridFile.getAbsolutePath()));
+		
+		for(int i=0; i<lines.size(); i++){
+			String row=lines.get(i);
+			for(int j=0; j<row.length(); j++){
+				if(row.charAt(j)=='1'){
+					grid[i][j].setLiving();
+				}
+				else{
+					grid[i][j].setDead();
+				}
+			}
+		}
+		
+		updateUI();
+	}
+	
+	public void saveGridFile(){
+		JFileChooser fileChooser=new JFileChooser("./examples/");
+		fileChooser.setDialogTitle("Save Grid");
+		FileNameExtensionFilter filter=new FileNameExtensionFilter(
+				"Saved Grid", "grid");
+		fileChooser.setFileFilter(filter);
+		int returnState=fileChooser.showSaveDialog(null);
+		if(returnState==JFileChooser.APPROVE_OPTION){
+			savedGridFile=fileChooser.getSelectedFile();
+			String path=savedGridFile.getPath();
+			if(path.length()>5 && path.substring(path.length()-5).equals(".grid")){
+				saveFile(path.substring(0, path.length()-5));
+			}
+			else saveFile(path);
+		}
+	}
+	
+	private void saveFile(String path){
+		try {
+			PrintWriter out=new PrintWriter(new BufferedWriter(new FileWriter(path+".grid")));
+			for(int i=0; i<grid.length; i++){
+				for(int j=0; j<grid[i].length;j++){
+					Cell cell=grid[i][j];
+					if(cell.isLiving()){
+						out.append("1");
+					}
+					else{
+						out.append("0");
+					}
+				}
+				out.println();
+			}
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public void clear(){
